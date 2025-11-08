@@ -26,7 +26,7 @@
 
 Цей проєкт запаковано як `app-image`, який **вже містить у собі Java**. Вам не потрібно нічого встановлювати додатково.
 
-1.  Перейдіть у вкладку **[Releases](https://github.com/Lutvunenko-Dmutro/java-thread-performance-analyzer/releases/tag/v1.0)** (тут вкажіть ваше посилання).
+1.  Перейдіть у вкладку **[Releases](https://github.com/Lutvunenko-Dmutro/java-thread-performance-analyzer/releases/tag/v1.0)**.
 2.  Завантажте файл **`ModernLab.zip`** зі списку "Assets".
 3.  **Розархівуйте** цей `.zip` файл (наприклад, на Робочий стіл).
 4.  Відкрийте нову папку `ModernLab` і двічі клікніть на **`ModernLab.exe`**.
