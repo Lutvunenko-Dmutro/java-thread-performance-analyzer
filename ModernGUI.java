@@ -34,7 +34,7 @@ public class ModernGUI {
     private JTextArea resultArea;
     private JProgressBar progressBar;
     
-    // Власний компонент GUI, який ми створили для малювання графіка.
+    // Власний компонент GUI для малювання графіка.
     private FinalChartPanel chartPanel;
 
     public ModernGUI() {
@@ -65,7 +65,7 @@ public class ModernGUI {
         progressBar.setString("Очікування...");
         progressBar.setIndeterminate(false);
 
-        // Ініціалізуємо наш власний клас для малювання.
+        // Ініціалізуємо власний клас для малювання.
         chartPanel = new FinalChartPanel(); 
         chartPanel.setPreferredSize(new Dimension(300, 100)); 
         
@@ -97,8 +97,7 @@ public class ModernGUI {
 
     /**
      * Це головний метод, що керує логікою виконання задачі.
-     * Він використовує SwingWorker, щоб виконати "важку" роботу у фоні,
-     * не "вішаючи" при цьому графічний інтерфейс.
+     * Він використовує SwingWorker, щоб виконати роботу у фоні.
      */
     private void runTask(boolean isMultiThreaded) {
         String taskName = isMultiThreaded ? "Багатопоточна" : "Однопоточна";
@@ -111,16 +110,16 @@ public class ModernGUI {
         progressBar.setString("Виконання...");
 
         /**
-         * SwingWorker - це ключовий інструмент для багатопоточності в Swing.
-         * Він дозволяє нам чітко розділити логіку на два потоки:
-         * 1. doInBackground() - виконується у фоновому потоці (тут ми рахуємо).
-         * 2. done() - виконується у потоці GUI (тут ми оновлюємо інтерфейс).
+         * SwingWorker - це інструмент для багатопоточності в Swing.
+         * Він дозволяє чітко розділити логіку на два потоки:
+         * 1. doInBackground() - виконується у фоновому потоці (тут рахуємо).
+         * 2. done() - виконується у потоці GUI (тут оновлюємо інтерфейс).
          */
         SwingWorker<ResultData, Void> worker = new SwingWorker<ResultData, Void>() {
             
             /**
              * Цей код виконується у ФОНОВОМУ ПОТОЦІ.
-             * Він ніколи не повинен торкатися компонентів GUI (кнопок, тексту).
+             * Він не повинен торкатися компонентів GUI (кнопок, тексту).
              */
             @Override
             protected ResultData doInBackground() throws Exception {
@@ -216,7 +215,7 @@ public class ModernGUI {
     public static final int TASK_COUNT = 10000; // "Складність" одного завдання
 
     /**
-     * Імітація "важкої" роботи (генерування великих чисел та підрахунок).
+     * Імітація важкої роботи (генерування великих чисел та підрахунок).
      */
     public Long process() { 
         Long summa = 0L; 
@@ -253,7 +252,7 @@ public class ModernGUI {
             // Визначаємо, скільки потоків (ядер) є в системі
             int ap = Runtime.getRuntime().availableProcessors();
             
-            // Створюємо "пул потоків", який керуватиме нашими ядрами
+            // Створюємо пул потоків, який керуватиме нашими ядрами
             ExecutorService es = Executors.newFixedThreadPool(ap); 
             
             Long summa = 0L; 
@@ -264,7 +263,7 @@ public class ModernGUI {
                     threads.add(new MyCallable()); 
                 } 
                 
-                // Ключова команда: "Виконати всі завдання з цього списку паралельно"
+                // Команда: "Виконати всі завдання з цього списку паралельно"
                 // Повертає список "майбутніх" результатів (Future)
                 List<Future<Long>> result = es.invokeAll(threads);
                 
@@ -276,7 +275,7 @@ public class ModernGUI {
             } catch (InterruptedException | ExecutionException ex) { 
                 ex.printStackTrace(System.out); 
             } finally {
-                es.shutdown(); // Завжди закриваємо пул потоків
+                es.shutdown(); // Закриваємо пул потоків
             }
             return summa; 
         } 
@@ -440,4 +439,5 @@ public class ModernGUI {
             }
         }
     }
+
 }
